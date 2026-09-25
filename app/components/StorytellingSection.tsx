@@ -198,22 +198,22 @@ export default function StorytellingSection() {
           <div
             data-start="0.03"
             data-dur="0.32"
-            data-dir-x="-150"
-            data-dir-y="-100"
+            data-dir-x="-180"
+            data-dir-y="-110"
             data-base-rot="-3.5"
             data-rot-delta="-6"
-            className="absolute top-[8%] sm:top-[10%] lg:top-[12%] left-[4%] sm:left-[6%] lg:left-[9%] max-w-[220px] sm:max-w-[270px] flex flex-col gap-1.5"
+            className="absolute top-[9%] sm:top-[11%] lg:top-[13%] left-[5%] sm:left-[9%] lg:left-[14%] xl:left-[17%] max-w-[260px] sm:max-w-[320px] lg:max-w-[360px] flex flex-col gap-2"
           >
             <div className="flex items-center gap-2">
-              <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.28em] text-[#a7c957] uppercase">
+              <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.28em] text-[#a7c957] uppercase">
                 [02 // SETTLEMENT SANCTUARY]
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#a7c957] shadow-[0_0_8px_#a7c957] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#a7c957] shadow-[0_0_10px_#a7c957] animate-pulse" />
             </div>
-            <h3 className="font-[family-name:var(--font-display)] font-extrabold text-base sm:text-xl lg:text-2xl tracking-tight text-white/95 leading-tight">
+            <h3 className="font-[family-name:var(--font-display)] font-extrabold text-lg sm:text-2xl lg:text-3xl tracking-tight text-white/95 leading-tight">
               The Woolen Terraces
             </h3>
-            <p className="text-[10px] sm:text-[11px] lg:text-[12px] text-neutral-400 font-light leading-relaxed">
+            <p className="text-[11px] sm:text-[12.5px] lg:text-[14px] text-neutral-300 font-light leading-relaxed">
               Knitted cottage dwellings woven into rolling green knolls, sculpted with thistle thread and morning sunlight.
             </p>
           </div>
@@ -222,21 +222,21 @@ export default function StorytellingSection() {
           <div
             data-start="0.04"
             data-dur="0.30"
-            data-dir-x="160"
-            data-dir-y="-90"
+            data-dir-x="180"
+            data-dir-y="-100"
             data-base-rot="2.8"
             data-rot-delta="5"
-            className="absolute top-[9%] sm:top-[11%] lg:top-[13%] right-[4%] sm:right-[7%] lg:right-[10%] max-w-[210px] sm:max-w-[250px] text-right flex flex-col gap-1.5 items-end"
+            className="absolute top-[9%] sm:top-[11%] lg:top-[13%] right-[5%] sm:right-[9%] lg:right-[14%] xl:right-[17%] max-w-[240px] sm:max-w-[290px] lg:max-w-[320px] text-right flex flex-col gap-2 items-end"
           >
-            <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.3em] text-[#e9c46a] uppercase">
+            <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.3em] text-[#e9c46a] uppercase">
               SECTOR 04 · ELEVATION 840M
             </span>
-            <div className="inline-block border border-white/15 bg-white/[0.04] backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-sm shadow-sm">
-              <span className="text-[10px] sm:text-[11px] font-mono text-neutral-200 tracking-wider font-medium">
+            <div className="inline-block border border-white/20 bg-white/[0.06] backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-sm shadow-md">
+              <span className="text-[11px] sm:text-[12px] lg:text-[13px] font-mono text-neutral-100 tracking-wider font-semibold">
                 KNIT DENSITY: 98.4%
               </span>
             </div>
-            <span className="text-[9px] sm:text-[10px] text-neutral-400 font-mono tracking-widest uppercase">
+            <span className="text-[10px] sm:text-[11px] text-neutral-400 font-mono tracking-widest uppercase">
               DISTRICT // HIMEYORYN
             </span>
           </div>
@@ -249,9 +249,9 @@ export default function StorytellingSection() {
             data-dir-y="-20"
             data-base-rot="-90"
             data-rot-delta="-8"
-            className="hidden sm:block absolute top-[52%] left-[2%] sm:left-[3%] lg:left-[4%] origin-left"
+            className="hidden sm:block absolute top-[52%] left-[3%] sm:left-[4%] lg:left-[6%] origin-left"
           >
-            <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.45em] uppercase text-neutral-400/90 whitespace-nowrap">
+            <span className="text-[10px] sm:text-[11.5px] font-mono tracking-[0.45em] uppercase text-neutral-400/90 whitespace-nowrap">
               — FL-SANCTUARY · SECTION 02: THE HILL WEAVERS —
             </span>
           </div>
@@ -260,16 +260,16 @@ export default function StorytellingSection() {
           <div
             data-start="0.02"
             data-dur="0.26"
-            data-dir-x="-120"
-            data-dir-y="-50"
+            data-dir-x="-140"
+            data-dir-y="-60"
             data-base-rot="2"
             data-rot-delta="4"
-            className="hidden md:flex absolute top-[36%] left-[9%] lg:left-[14%] border border-white/10 bg-neutral-950/70 backdrop-blur-sm px-2.5 py-1.5 rounded-[2px] flex-col gap-0.5"
+            className="hidden md:flex absolute top-[36%] left-[10%] lg:left-[16%] xl:left-[20%] border border-white/15 bg-neutral-950/80 backdrop-blur-sm px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-[3px] shadow-lg flex-col gap-1"
           >
-            <span className="text-[8px] font-mono tracking-[0.25em] text-neutral-400 uppercase">
+            <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] text-neutral-400 uppercase font-medium">
               SPECIMEN ID: FL-702
             </span>
-            <span className="text-[10px] font-sans font-medium text-white/80">
+            <span className="text-xs sm:text-[13px] font-sans font-semibold text-white/90">
               Cottage Type: Spun Gable
             </span>
           </div>
@@ -278,21 +278,21 @@ export default function StorytellingSection() {
           <div
             data-start="0.07"
             data-dur="0.35"
-            data-dir-x="-140"
-            data-dir-y="110"
+            data-dir-x="-160"
+            data-dir-y="120"
             data-base-rot="-2"
             data-rot-delta="-5"
-            className="absolute bottom-[9%] sm:bottom-[11%] lg:bottom-[13%] left-[4%] sm:left-[7%] lg:left-[10%] max-w-[240px] sm:max-w-[290px] flex flex-col gap-2"
+            className="absolute bottom-[9%] sm:bottom-[11%] lg:bottom-[13%] left-[5%] sm:left-[9%] lg:left-[14%] xl:left-[17%] max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] flex flex-col gap-2.5"
           >
-            <div className="flex items-center gap-1.5">
-              <span className="text-[9px] font-mono tracking-[0.3em] text-[#f4a261] uppercase">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.3em] text-[#f4a261] uppercase font-semibold">
                 FOLKLORE // CHAPTER IV
               </span>
             </div>
-            <blockquote className="text-[11px] sm:text-xs lg:text-[13px] text-neutral-300 italic font-light leading-relaxed border-l border-white/30 pl-3">
+            <blockquote className="text-[12px] sm:text-[13.5px] lg:text-[15px] text-neutral-200 italic font-light leading-relaxed border-l-2 border-white/40 pl-3.5">
               &ldquo;Follow the pebble stairs up the knoll; the hill-weavers greet travelers only in stillness and wonder.&rdquo;
             </blockquote>
-            <span className="text-[9px] font-mono text-neutral-400 tracking-wider pl-3">
+            <span className="text-[10px] sm:text-[11px] font-mono text-neutral-400 tracking-wider pl-3.5">
               — Oral Chronicles of Floria
             </span>
           </div>
@@ -301,23 +301,23 @@ export default function StorytellingSection() {
           <div
             data-start="0.05"
             data-dur="0.30"
-            data-dir-x="170"
+            data-dir-x="180"
             data-dir-y="30"
             data-base-rot="-3.2"
             data-rot-delta="-6"
-            className="absolute top-[42%] sm:top-[40%] right-[3%] sm:right-[6%] lg:right-[9%] max-w-[210px] sm:max-w-[250px] flex flex-col items-end gap-1"
+            className="absolute top-[40%] sm:top-[39%] right-[5%] sm:right-[8%] lg:right-[13%] xl:right-[17%] max-w-[230px] sm:max-w-[280px] flex flex-col items-end gap-1.5"
           >
-            <div className="border border-white/20 bg-neutral-950/80 backdrop-blur-md px-3.5 py-2 sm:py-2.5 rounded-[3px] shadow-xl flex flex-col gap-0.5 text-right">
-              <div className="flex items-center justify-end gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#e76f51]" />
-                <span className="text-[8px] sm:text-[9px] font-mono text-neutral-400 uppercase tracking-widest">
+            <div className="border border-white/25 bg-neutral-950/85 backdrop-blur-md px-4 sm:px-5 py-2.5 sm:py-3 rounded-[4px] shadow-2xl flex flex-col gap-1 text-right">
+              <div className="flex items-center justify-end gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#e76f51] shadow-[0_0_8px_#e76f51]" />
+                <span className="text-[9px] sm:text-[10px] font-mono text-neutral-300 uppercase tracking-widest font-medium">
                   HARVEST YIELD
                 </span>
               </div>
-              <span className="text-xs sm:text-sm font-bold font-mono text-white tracking-wider">
+              <span className="text-sm sm:text-base font-extrabold font-mono text-white tracking-wider">
                 YARN PUMPKINS
               </span>
-              <span className="text-[9px] sm:text-[10px] text-neutral-400 font-light">
+              <span className="text-[10px] sm:text-[11.5px] text-neutral-300 font-light">
                 Cycle 14 · Spun organic vegetation
               </span>
             </div>
@@ -331,9 +331,9 @@ export default function StorytellingSection() {
             data-dir-y="40"
             data-base-rot="90"
             data-rot-delta="7"
-            className="hidden lg:block absolute top-[55%] right-[2%] origin-right"
+            className="hidden lg:block absolute top-[55%] right-[3%] sm:right-[4%] lg:right-[6%] origin-right"
           >
-            <span className="text-[9px] font-mono tracking-[0.45em] uppercase text-neutral-400/80 whitespace-nowrap">
+            <span className="text-[10px] sm:text-[11.5px] font-mono tracking-[0.45em] uppercase text-neutral-400/90 whitespace-nowrap">
               — PERMANENT COLLECTION · EXHIBITION ROOM II —
             </span>
           </div>
@@ -342,22 +342,22 @@ export default function StorytellingSection() {
           <div
             data-start="0.06"
             data-dur="0.33"
-            data-dir-x="150"
-            data-dir-y="110"
+            data-dir-x="160"
+            data-dir-y="120"
             data-base-rot="2.5"
             data-rot-delta="5"
-            className="absolute bottom-[8%] sm:bottom-[10%] lg:bottom-[12%] right-[4%] sm:right-[7%] lg:right-[10%] max-w-[220px] sm:max-w-[270px] text-right flex flex-col gap-1.5"
+            className="absolute bottom-[8%] sm:bottom-[10%] lg:bottom-[12%] right-[5%] sm:right-[9%] lg:right-[14%] xl:right-[17%] max-w-[240px] sm:max-w-[300px] lg:max-w-[340px] text-right flex flex-col gap-2"
           >
             <div className="flex items-center justify-end gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-              <span className="text-[9px] sm:text-[10px] font-mono text-neutral-300 tracking-[0.22em] uppercase">
+              <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.6)] animate-pulse" />
+              <span className="text-[10px] sm:text-[11px] font-mono text-neutral-200 tracking-[0.22em] uppercase font-semibold">
                 SETTLEMENT: HARMONIOUS
               </span>
             </div>
-            <p className="text-[10px] sm:text-[11px] lg:text-[12px] text-neutral-400 font-light leading-snug">
+            <p className="text-[11px] sm:text-[12.5px] lg:text-[13.5px] text-neutral-300 font-light leading-snug">
               Pastel cottage roofs nestled along hillside terraces under a wool-drift sky.
             </p>
-            <span className="text-[8px] sm:text-[9px] font-mono text-neutral-400 tracking-widest uppercase">
+            <span className="text-[9px] sm:text-[10px] font-mono text-neutral-400 tracking-widest uppercase">
               FLORIA // ARCADIA FIBROSA
             </span>
           </div>
@@ -370,9 +370,9 @@ export default function StorytellingSection() {
             data-dir-y="-80"
             data-base-rot="0"
             data-rot-delta="0"
-            className="absolute top-[4%] sm:top-[5%] left-1/2 -translate-x-1/2 text-center pointer-events-none"
+            className="absolute top-[5%] sm:top-[6%] left-1/2 -translate-x-1/2 text-center pointer-events-none"
           >
-            <span className="text-[8px] sm:text-[9px] md:text-[10px] font-mono uppercase tracking-[0.38em] text-neutral-400/90">
+            <span className="text-[9px] sm:text-[10px] md:text-[11px] font-mono uppercase tracking-[0.38em] text-neutral-300/90 font-medium">
               [ EXHIBITION PERSPECTIVE · SCROLL TO IMMERSE ]
             </span>
           </div>
@@ -387,10 +387,10 @@ export default function StorytellingSection() {
             data-rot-delta="0"
             className="absolute bottom-[3%] sm:bottom-[4%] left-1/2 -translate-x-1/2 text-center flex flex-col items-center gap-1 pointer-events-none"
           >
-            <span className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.3em] text-neutral-400">
+            <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.3em] text-neutral-300 font-medium">
               SCROLL TO EXPAND
             </span>
-            <span className="text-xs text-neutral-400 animate-bounce">↓</span>
+            <span className="text-sm text-neutral-300 animate-bounce">↓</span>
           </div>
         </div>
 
