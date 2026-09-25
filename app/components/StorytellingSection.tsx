@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function StorytellingSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -8,7 +8,7 @@ export default function StorytellingSection() {
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const imageElementRef = useRef<HTMLImageElement>(null);
   const textGroupRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const innerVignetteRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -34,10 +34,8 @@ export default function StorytellingSection() {
     const updateAnimation = () => {
       // High-precision smooth lerp easing for cinematic pacing
       currentProgress += (targetProgress - currentProgress) * 0.12;
-      setScrollProgress(currentProgress);
 
       const p = currentProgress;
-      const vw = window.innerWidth;
       const vh = window.innerHeight;
 
       // 1. Calculate expansion for the center 9:16 portrait image
@@ -47,45 +45,54 @@ export default function StorytellingSection() {
         const baseW = container.offsetWidth || 300;
         const baseH = container.offsetHeight || (baseW * 16) / 9;
 
-        // Scale factor required to reach full page expansion
-        const scaleXNeeded = (vw / baseW) * 1.025;
-        const scaleYNeeded = (vh / baseH) * 1.025;
-        const fullBleedScale = Math.max(scaleXNeeded, scaleYNeeded);
+        // Scale factor required to reach exact whole viewport height
+        const targetScale = Math.max(1, vh / baseH);
 
-        // Target scale: expands to 60% of full page rather than 100%
-        const targetScale = fullBleedScale * 0.60;
+        // Phase 1 (0.04 -> 0.44): Scale up until it takes the whole viewport height
+        // Phase 2 (0.44 -> 0.56): Hold at full viewport height for immersive viewing
+        // Phase 3 (0.56 -> 0.92): Unscale back down to original size as user scrolls further
+        let expansionFactor = 0;
 
-        // Growth phase: begins at p = 0.06, achieves 60% expansion by p = 0.76
-        const scaleProgress = Math.max(0, Math.min(1, (p - 0.06) / 0.70));
-        
-        // Custom cubic ease-in-out curve for luxurious deceleration
-        const easedScaleT =
-          scaleProgress < 0.5
-            ? 4 * scaleProgress * scaleProgress * scaleProgress
-            : 1 - Math.pow(-2 * scaleProgress + 2, 3) / 2;
+        if (p <= 0.04) {
+          expansionFactor = 0;
+        } else if (p < 0.44) {
+          const t = (p - 0.04) / 0.40;
+          // Smooth cubic ease-in-out
+          expansionFactor = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        } else if (p <= 0.56) {
+          // Peak: takes whole viewport height
+          expansionFactor = 1;
+        } else if (p < 0.92) {
+          const t = (p - 0.56) / 0.36;
+          // Smooth cubic ease-in-out unscale
+          const unscaleT = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          expansionFactor = 1 - unscaleT;
+        } else {
+          expansionFactor = 0;
+        }
 
-        // Current scale with subtle immersive camera dolly past target expansion (up to 3% extra depth)
-        const postZoom = p > 0.76 ? 1 + (p - 0.76) * 0.03 : 1;
-        const currentScale = (1 + (targetScale - 1) * easedScaleT) * postZoom;
+        const currentScale = 1 + (targetScale - 1) * expansionFactor;
 
-        // Retain refined rounded corners and subtle border for an elegant framed gallery centerpiece
-        const borderFadeT = Math.min(1, scaleProgress);
-        const currentRadius = Math.max(12, 16 - borderFadeT * 4);
-        const borderAlpha = Math.max(0.18, 0.25 - borderFadeT * 0.07);
-        const shadowBlur = 30 + scaleProgress * 30;
-        const shadowOpacity = 0.7 + scaleProgress * 0.2;
+        // Refined corner radius & border opacity linked to expansion
+        const currentRadius = Math.max(10, 16 - expansionFactor * 6);
+        const borderAlpha = Math.max(0.15, 0.25 - expansionFactor * 0.08);
+        const shadowBlur = 30 + expansionFactor * 30;
+        const shadowOpacity = 0.7 + expansionFactor * 0.2;
 
         container.style.transform = `scale3d(${currentScale.toFixed(4)}, ${currentScale.toFixed(4)}, 1)`;
         container.style.borderRadius = `${currentRadius.toFixed(1)}px`;
         container.style.borderColor = `rgba(255, 255, 255, ${borderAlpha.toFixed(3)})`;
         container.style.boxShadow = `0 25px ${shadowBlur.toFixed(1)}px -10px rgba(0, 0, 0, ${shadowOpacity.toFixed(3)}), 0 0 40px rgba(255, 255, 255, ${(borderAlpha * 0.25).toFixed(3)})`;
+
+        if (innerVignetteRef.current) {
+          innerVignetteRef.current.style.opacity = `${Math.max(0, 0.4 * (1 - expansionFactor)).toFixed(3)}`;
+        }
       }
 
-      // 2. Subtle internal parallax for tactile depth
+      // 2. Subtle internal depth
       if (imageElementRef.current) {
-        const t = Math.max(0, Math.min(1, p / 0.8));
-        const innerZoom = 1.03 + 0.04 * (1 - t);
-        imageElementRef.current.style.transform = `scale(${innerZoom.toFixed(4)})`;
+        const innerZoom = 1.02 + 0.03 * (1 - (p > 0.5 ? 1 - (p - 0.5) * 2 : p * 2));
+        imageElementRef.current.style.transform = `scale(${Math.max(1, innerZoom).toFixed(4)})`;
       }
 
       // 3. Staggered departure of asymmetric editorial text elements
@@ -397,9 +404,10 @@ export default function StorytellingSection() {
 
           {/* Ambient Inner Vignette: Evaporates as the artwork reaches full viewport */}
           <div
+            ref={innerVignetteRef}
             className="absolute inset-0 pointer-events-none transition-opacity duration-300"
             style={{
-              opacity: Math.max(0, 0.4 * (1 - scrollProgress * 1.5)),
+              opacity: 0.4,
               background: "radial-gradient(circle at center, transparent 45%, rgba(0, 0, 0, 0.6) 100%)",
             }}
             aria-hidden="true"
