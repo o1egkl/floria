@@ -1,0 +1,14 @@
+services:
+  floria:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: floria:latest
+    container_name: floria-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0

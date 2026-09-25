@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "docker:build": "docker build -t floria .",
+    "docker:run": "docker run -p 3000:3000 floria",
+    "docker:compose": "docker compose up -d"
   },
   "dependencies": {
     "@types/three": "^0.186.0",
