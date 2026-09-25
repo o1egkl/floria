@@ -202,23 +202,23 @@ export default function StorytellingSection() {
             data-dir-y="-110"
             data-base-rot="-3.5"
             data-rot-delta="-6"
-            className="absolute top-[9%] sm:top-[11%] lg:top-[13%] left-[5%] sm:left-[9%] lg:left-[14%] xl:left-[17%] max-w-[260px] sm:max-w-[320px] lg:max-w-[360px] flex flex-col gap-2"
+            className="absolute top-[4%] sm:top-[11%] lg:top-[13%] left-4 sm:left-[9%] lg:left-[14%] xl:left-[17%] right-4 sm:right-auto max-w-none sm:max-w-[320px] lg:max-w-[360px] flex flex-col items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-2"
           >
             <div className="flex items-center gap-2">
-              <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.28em] text-[#a7c957] uppercase">
+              <span className="text-[9px] sm:text-[11px] font-mono tracking-[0.25em] sm:tracking-[0.28em] text-[#a7c957] uppercase">
                 [02 // SETTLEMENT SANCTUARY]
               </span>
-              <span className="w-2 h-2 rounded-full bg-[#a7c957] shadow-[0_0_10px_#a7c957] animate-pulse" />
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#a7c957] shadow-[0_0_10px_#a7c957] animate-pulse" />
             </div>
-            <h3 className="font-[family-name:var(--font-display)] font-extrabold text-lg sm:text-2xl lg:text-3xl tracking-tight text-white/95 leading-tight">
+            <h3 className="font-[family-name:var(--font-display)] font-extrabold text-base sm:text-2xl lg:text-3xl tracking-tight text-white/95 leading-tight">
               The Woolen Terraces
             </h3>
-            <p className="text-[11px] sm:text-[12.5px] lg:text-[14px] text-neutral-300 font-light leading-relaxed">
+            <p className="text-[10px] sm:text-[12.5px] lg:text-[14px] text-neutral-300 font-light leading-relaxed max-w-xs sm:max-w-none">
               Knitted cottage dwellings woven into rolling green knolls, sculpted with thistle thread and morning sunlight.
             </p>
           </div>
 
-          {/* Element 2: Top-Right Cartographic Telemetry & Density Badge */}
+          {/* Element 2: Top-Right Cartographic Telemetry & Density Badge (Desktop / Tablet) */}
           <div
             data-start="0.04"
             data-dur="0.30"
@@ -226,7 +226,7 @@ export default function StorytellingSection() {
             data-dir-y="-100"
             data-base-rot="2.8"
             data-rot-delta="5"
-            className="absolute top-[9%] sm:top-[11%] lg:top-[13%] right-[5%] sm:right-[9%] lg:right-[14%] xl:right-[17%] max-w-[240px] sm:max-w-[290px] lg:max-w-[320px] text-right flex flex-col gap-2 items-end"
+            className="hidden sm:flex absolute top-[9%] sm:top-[11%] lg:top-[13%] right-[5%] sm:right-[9%] lg:right-[14%] xl:right-[17%] max-w-[240px] sm:max-w-[290px] lg:max-w-[320px] text-right flex-col gap-2 items-end"
           >
             <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.3em] text-[#e9c46a] uppercase">
               SECTOR 04 · ELEVATION 840M
@@ -282,17 +282,17 @@ export default function StorytellingSection() {
             data-dir-y="120"
             data-base-rot="-2"
             data-rot-delta="-5"
-            className="absolute bottom-[9%] sm:bottom-[11%] lg:bottom-[13%] left-[5%] sm:left-[9%] lg:left-[14%] xl:left-[17%] max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] flex flex-col gap-2.5"
+            className="absolute bottom-[4.5%] sm:bottom-[11%] lg:bottom-[13%] left-4 sm:left-[9%] lg:left-[14%] xl:left-[17%] right-4 sm:right-auto max-w-none sm:max-w-[340px] lg:max-w-[390px] flex flex-col items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-2.5"
           >
             <div className="flex items-center gap-2">
-              <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.3em] text-[#f4a261] uppercase font-semibold">
+              <span className="text-[9px] sm:text-[11px] font-mono tracking-[0.25em] sm:tracking-[0.3em] text-[#f4a261] uppercase font-semibold">
                 FOLKLORE // CHAPTER IV
               </span>
             </div>
-            <blockquote className="text-[12px] sm:text-[13.5px] lg:text-[15px] text-neutral-200 italic font-light leading-relaxed border-l-2 border-white/40 pl-3.5">
+            <blockquote className="text-[11px] sm:text-[13.5px] lg:text-[15px] text-neutral-200 italic font-light leading-relaxed border-l-0 sm:border-l-2 border-white/40 pl-0 sm:pl-3.5 max-w-xs sm:max-w-none">
               &ldquo;Follow the pebble stairs up the knoll; the hill-weavers greet travelers only in stillness and wonder.&rdquo;
             </blockquote>
-            <span className="text-[10px] sm:text-[11px] font-mono text-neutral-400 tracking-wider pl-3.5">
+            <span className="text-[9px] sm:text-[11px] font-mono text-neutral-400 tracking-wider pl-0 sm:pl-3.5">
               — Oral Chronicles of Floria
             </span>
           </div>
@@ -305,7 +305,7 @@ export default function StorytellingSection() {
             data-dir-y="30"
             data-base-rot="-3.2"
             data-rot-delta="-6"
-            className="absolute top-[40%] sm:top-[39%] right-[5%] sm:right-[8%] lg:right-[13%] xl:right-[17%] max-w-[230px] sm:max-w-[280px] flex flex-col items-end gap-1.5"
+            className="hidden sm:flex absolute top-[40%] sm:top-[39%] right-[5%] sm:right-[8%] lg:right-[13%] xl:right-[17%] max-w-[230px] sm:max-w-[280px] flex-col items-end gap-1.5"
           >
             <div className="border border-white/25 bg-neutral-950/85 backdrop-blur-md px-4 sm:px-5 py-2.5 sm:py-3 rounded-[4px] shadow-2xl flex flex-col gap-1 text-right">
               <div className="flex items-center justify-end gap-2">
@@ -346,7 +346,7 @@ export default function StorytellingSection() {
             data-dir-y="120"
             data-base-rot="2.5"
             data-rot-delta="5"
-            className="absolute bottom-[8%] sm:bottom-[10%] lg:bottom-[12%] right-[5%] sm:right-[9%] lg:right-[14%] xl:right-[17%] max-w-[240px] sm:max-w-[300px] lg:max-w-[340px] text-right flex flex-col gap-2"
+            className="hidden sm:flex absolute bottom-[8%] sm:bottom-[10%] lg:bottom-[12%] right-[5%] sm:right-[9%] lg:right-[14%] xl:right-[17%] max-w-[240px] sm:max-w-[300px] lg:max-w-[340px] text-right flex-col gap-2"
           >
             <div className="flex items-center justify-end gap-2">
               <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.6)] animate-pulse" />
@@ -370,7 +370,7 @@ export default function StorytellingSection() {
             data-dir-y="-80"
             data-base-rot="0"
             data-rot-delta="0"
-            className="absolute top-[5%] sm:top-[6%] left-1/2 -translate-x-1/2 text-center pointer-events-none"
+            className="hidden sm:block absolute top-[5%] sm:top-[6%] left-1/2 -translate-x-1/2 text-center pointer-events-none"
           >
             <span className="text-[9px] sm:text-[10px] md:text-[11px] font-mono uppercase tracking-[0.38em] text-neutral-300/90 font-medium">
               [ EXHIBITION PERSPECTIVE · SCROLL TO IMMERSE ]
@@ -385,12 +385,12 @@ export default function StorytellingSection() {
             data-dir-y="60"
             data-base-rot="0"
             data-rot-delta="0"
-            className="absolute bottom-[3%] sm:bottom-[4%] left-1/2 -translate-x-1/2 text-center flex flex-col items-center gap-1 pointer-events-none"
+            className="absolute bottom-[1.5%] sm:bottom-[4%] left-1/2 -translate-x-1/2 text-center flex flex-col items-center gap-1 pointer-events-none"
           >
-            <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.3em] text-neutral-300 font-medium">
+            <span className="text-[8px] sm:text-[10px] font-mono uppercase tracking-[0.25em] sm:tracking-[0.3em] text-neutral-300 font-medium">
               SCROLL TO EXPAND
             </span>
-            <span className="text-sm text-neutral-300 animate-bounce">↓</span>
+            <span className="text-xs sm:text-sm text-neutral-300 animate-bounce">↓</span>
           </div>
         </div>
 
@@ -400,7 +400,7 @@ export default function StorytellingSection() {
         {/* ========================================================================= */}
         <div
           ref={imageContainerRef}
-          className="relative z-10 aspect-[9/16] w-[190px] sm:w-[240px] md:w-[290px] lg:w-[330px] xl:w-[360px] overflow-hidden border border-white/20 rounded-2xl shadow-2xl select-none will-change-transform"
+          className="relative z-10 aspect-[9/16] w-[145px] sm:w-[220px] md:w-[280px] lg:w-[330px] xl:w-[360px] overflow-hidden border border-white/20 rounded-xl sm:rounded-2xl shadow-2xl select-none will-change-transform"
           style={{
             transformOrigin: "center center",
             backfaceVisibility: "hidden",

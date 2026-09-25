@@ -84,9 +84,35 @@ export default function Home() {
       if (glowRingRef.current) glowRingRef.current.style.opacity = "1";
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        const rect = container.getBoundingClientRect();
+        targetX = touch.clientX - rect.left;
+        targetY = touch.clientY - rect.top;
+
+        if (!isInside) {
+          isInside = true;
+          if (currentX < -500) {
+            currentX = targetX;
+            currentY = targetY;
+          }
+          if (revealLayerRef.current) revealLayerRef.current.style.opacity = "1";
+          if (glowRingRef.current) glowRingRef.current.style.opacity = "1";
+        }
+      }
+    };
+
+    const handleTouchEnd = () => {
+      // Keep reveal alive smoothly on mobile touch
+    };
+
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mouseleave", handleMouseLeave);
     container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("touchstart", handleTouchMove, { passive: true });
+    container.addEventListener("touchmove", handleTouchMove, { passive: true });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     animationFrameId = requestAnimationFrame(updateSpotlight);
 
@@ -94,6 +120,9 @@ export default function Home() {
       container.removeEventListener("mousemove", handleMouseMove);
       container.removeEventListener("mouseleave", handleMouseLeave);
       container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("touchstart", handleTouchMove);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -148,7 +177,7 @@ export default function Home() {
       />
 
       {/* Top Navigation - Above reveal layer */}
-      <header className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 pt-8 sm:pt-10 md:pt-12 flex items-center justify-between">
+      <header className="relative z-20 w-full px-5 sm:px-12 md:px-16 lg:px-24 pt-6 sm:pt-10 md:pt-12 flex items-center justify-between">
         {/* Left: Brand / Logo */}
         <div className="flex items-center">
           <a
@@ -161,12 +190,12 @@ export default function Home() {
         </div>
 
         {/* Right: Editorial Nav Links */}
-        <nav className="flex items-center gap-5 sm:gap-8" aria-label="Social and portfolio links">
+        <nav className="flex items-center gap-3.5 sm:gap-8" aria-label="Social and portfolio links">
           <a
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[10px] sm:text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-300 hover:text-white transition-colors duration-200 drop-shadow-sm"
+            className="text-[9px] sm:text-[11px] font-medium tracking-[0.18em] sm:tracking-[0.2em] uppercase text-neutral-300 hover:text-white transition-colors duration-200 drop-shadow-sm"
             id="nav-instagram"
           >
             /INSTAGRAM
@@ -175,7 +204,7 @@ export default function Home() {
             href="https://behance.net"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[10px] sm:text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-300 hover:text-white transition-colors duration-200 drop-shadow-sm"
+            className="text-[9px] sm:text-[11px] font-medium tracking-[0.18em] sm:tracking-[0.2em] uppercase text-neutral-300 hover:text-white transition-colors duration-200 drop-shadow-sm"
             id="nav-behance"
           >
             /BEHANCE
@@ -184,7 +213,7 @@ export default function Home() {
             href="https://x.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[10px] sm:text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-300 hover:text-white transition-colors duration-200 drop-shadow-sm"
+            className="text-[9px] sm:text-[11px] font-medium tracking-[0.18em] sm:tracking-[0.2em] uppercase text-neutral-300 hover:text-white transition-colors duration-200 drop-shadow-sm"
             id="nav-x"
           >
             /X
@@ -192,18 +221,18 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Main Hero Section - Centered and shifted 20% toward top */}
-      <main className="relative z-10 w-full px-6 sm:px-12 md:px-16 lg:px-24 my-auto py-8 sm:py-12 flex flex-col items-center justify-center -translate-y-[15%] md:-translate-y-[20%]">
-        {/* 3D Character Model - Positioned on the left side, lowered to keep headline unobstructed */}
-        <div className="absolute left-2 sm:left-6 md:left-10 lg:left-14 xl:left-20 top-1/2 -translate-y-[18%] sm:-translate-y-[20%] md:-translate-y-[20%] w-[260px] sm:w-[320px] md:w-[390px] lg:w-[460px] h-[340px] sm:h-[420px] md:h-[500px] lg:h-[560px] pointer-events-none z-[6] flex items-center justify-center">
+      {/* Main Hero Section - Centered and shifted toward top */}
+      <main className="relative z-10 w-full px-4 sm:px-12 md:px-16 lg:px-24 my-auto py-6 sm:py-12 flex flex-col items-center justify-center -translate-y-[10%] sm:-translate-y-[15%] md:-translate-y-[20%]">
+        {/* 3D Character Model - Responsive sizing and position for mobile */}
+        <div className="absolute left-1 sm:left-6 md:left-10 lg:left-14 xl:left-20 top-1/2 -translate-y-[12%] sm:-translate-y-[20%] md:-translate-y-[20%] w-[170px] sm:w-[300px] md:w-[390px] lg:w-[460px] h-[230px] sm:h-[400px] md:h-[500px] lg:h-[560px] pointer-events-none z-[6] flex items-center justify-center opacity-80 sm:opacity-100">
           <CharacterModel />
         </div>
 
         <div className="w-full max-w-[1600px] mx-auto text-center flex flex-col items-center justify-center">
           {/* Eyebrow / Supporting Text - Centered */}
-          <div className="mb-3 sm:mb-4 md:mb-5 text-center relative z-20">
+          <div className="mb-2.5 sm:mb-4 md:mb-5 text-center relative z-20 px-2">
             <span
-              className="inline-block text-[10px] sm:text-[11px] md:text-[12px] font-medium tracking-[0.22em] uppercase text-neutral-300 select-none drop-shadow-md"
+              className="inline-block text-[9px] sm:text-[11px] md:text-[12px] font-medium tracking-[0.2em] sm:tracking-[0.22em] uppercase text-neutral-300 select-none drop-shadow-md"
               id="hero-supporting-text"
             >
               Enter a world where creatures come alive
@@ -213,7 +242,7 @@ export default function Home() {
           {/* Dominant Hero Headline: FLORIA - Centered */}
           <div className="w-full text-center flex justify-center items-center overflow-visible px-2 sm:px-4 relative z-[4]">
             <h1
-              className="font-[family-name:var(--font-display)] font-extrabold uppercase tracking-[-0.02em] text-white/45 hover:text-white/65 transition-colors duration-500 leading-[0.88] select-none whitespace-nowrap text-[12.5vw] sm:text-[13vw] md:text-[13.5vw] lg:text-[12.5vw] xl:text-[12vw] 2xl:text-[11.5vw] text-center drop-shadow-[0_4px_20px_rgba(0,0,0,0.35)]"
+              className="font-[family-name:var(--font-display)] font-extrabold uppercase tracking-[-0.02em] text-white/45 hover:text-white/65 transition-colors duration-500 leading-[0.88] select-none whitespace-nowrap text-[13.5vw] sm:text-[13vw] md:text-[13.5vw] lg:text-[12.5vw] xl:text-[12vw] 2xl:text-[11.5vw] text-center drop-shadow-[0_4px_20px_rgba(0,0,0,0.35)]"
               id="hero-title"
               style={{
                 textRendering: "geometricPrecision",
@@ -226,20 +255,20 @@ export default function Home() {
       </main>
 
       {/* Bottom Area: Description (Left) + CTAs (Right) - Above reveal layer */}
-      <footer className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 pb-8 sm:pb-10 md:pb-12">
-        <div className="w-full max-w-[1600px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
+      <footer className="relative z-20 w-full px-5 sm:px-12 md:px-16 lg:px-24 pb-6 sm:pb-10 md:pb-12">
+        <div className="w-full max-w-[1600px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-8 md:gap-12">
           {/* Left: Bottom Description */}
           <div className="max-w-xs sm:max-w-sm md:max-w-[360px] lg:max-w-[400px]">
             <p
-              className="text-[12px] sm:text-[13px] md:text-[13.5px] leading-[1.65] text-neutral-300 font-normal tracking-wide drop-shadow-md"
+              className="text-[11.5px] sm:text-[13px] md:text-[13.5px] leading-[1.6] sm:leading-[1.65] text-neutral-300 font-normal tracking-wide drop-shadow-md"
               id="bottom-description"
             >
               An immersive world of curious creatures, magical places, and stories waiting to be discovered.
             </p>
           </div>
 
-          {/* Right: CTA Buttons */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
+          {/* Right: CTA Buttons - Stacked on mobile for easy touch targets */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 shrink-0 w-full sm:w-auto">
             <button
               onClick={() => setActiveModal("explore")}
               className="group relative inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white bg-black/50 backdrop-blur-sm hover:bg-white text-white hover:text-black px-5 py-2.5 sm:px-6 sm:py-3 text-[11px] sm:text-[12px] md:text-[13px] font-medium tracking-[0.08em] transition-all duration-300 ease-out cursor-pointer focus:outline-none focus:ring-1 focus:ring-white drop-shadow-md"
@@ -280,36 +309,36 @@ export default function Home() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-6 animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 sm:p-6 animate-fadeIn"
           onClick={() => setActiveModal(null)}
         >
           <div
-            className="w-full max-w-lg border border-neutral-800 bg-[#090909] p-8 text-left shadow-2xl relative"
+            className="w-full max-w-lg border border-neutral-800 bg-[#090909] p-5 sm:p-8 text-left shadow-2xl relative max-h-[88dvh] overflow-y-auto rounded-[2px]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setActiveModal(null)}
-              className="absolute top-6 right-6 text-neutral-500 hover:text-white text-xs tracking-widest uppercase transition-colors"
+              className="absolute top-5 right-5 text-neutral-500 hover:text-white text-xs tracking-widest uppercase transition-colors"
               aria-label="Close dialog"
             >
               [ESC / CLOSE]
             </button>
-            <span className="text-[10px] tracking-[0.25em] uppercase text-neutral-500 block mb-2 font-mono">
+            <span className="text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-neutral-500 block mb-2 font-mono">
               FLORIA ARCHIVE // {activeModal === "explore" ? "01" : "02"}
             </span>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-4">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-3 sm:mb-4">
               {activeModal === "explore" ? "Entering the Realm of Floria" : "The Curious Fauna & Sentient Forms"}
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed mb-6 font-light">
+            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed mb-5 sm:mb-6 font-light">
               {activeModal === "explore"
                 ? "Beyond the obsidian threshold lies a vast nocturnal biosphere. Echoes of primordial flora intertwine with luminescence, inviting wanderers to venture into uncharted domains."
                 : "From gossamer winged wanderers to shadow-weaving arboreals, every inhabitant of Floria embodies a unique story woven into the living tapestry of the sanctuary."}
             </p>
             <div className="flex items-center justify-between pt-4 border-t border-neutral-900">
-              <span className="text-[11px] text-neutral-500 font-mono tracking-wider">STATUS: AWAITING EXPEDITION</span>
+              <span className="text-[10px] sm:text-[11px] text-neutral-500 font-mono tracking-wider">STATUS: AWAITING EXPEDITION</span>
               <button
                 onClick={() => setActiveModal(null)}
-                className="text-xs uppercase tracking-widest font-medium border border-neutral-700 px-4 py-2 hover:bg-white hover:text-black transition-all"
+                className="text-xs uppercase tracking-widest font-medium border border-neutral-700 px-3.5 py-1.5 sm:px-4 sm:py-2 hover:bg-white hover:text-black transition-all"
               >
                 Return to Surface →
               </button>

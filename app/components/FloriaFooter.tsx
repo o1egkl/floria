@@ -7,7 +7,7 @@ export default function FloriaFooter() {
 
   return (
     <footer
-      className="relative w-full bg-[#000000] text-white pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 px-6 sm:px-12 md:px-16 lg:px-24 border-t border-white/[0.08] overflow-hidden selection:bg-white selection:text-black"
+      className="relative w-full bg-[#000000] text-white pt-16 sm:pt-32 md:pt-40 pb-10 sm:pb-16 px-4 sm:px-12 md:px-16 lg:px-24 border-t border-white/[0.08] overflow-hidden selection:bg-white selection:text-black"
       aria-label="Floria Sanctuary Colophon and Footer"
       id="floria-footer"
     >
@@ -21,18 +21,18 @@ export default function FloriaFooter() {
         {/* ========================================================================= */}
         {/* UPPER EDITORIAL CONTENT: 4-COLUMN CURATORIAL SPREAD                       */}
         {/* ========================================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 sm:gap-16 lg:gap-12 pb-24 sm:pb-32 border-b border-white/[0.08]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-16 lg:gap-12 pb-16 sm:pb-32 border-b border-white/[0.08]">
           
           {/* Column 1: Brand Statement & Sanctuary Accord (lg: 5 cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between pr-0 lg:pr-8">
             <div>
-              <div className="flex items-center gap-2.5 mb-5">
+              <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#a7c957]" />
-                <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-400">
+                <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] sm:tracking-[0.3em] uppercase text-neutral-400">
                   COLOPHON // VOL. IV
                 </span>
               </div>
-              <h3 className="font-[family-name:var(--font-display)] font-extrabold text-2xl sm:text-3xl text-white tracking-tight mb-4">
+              <h3 className="font-[family-name:var(--font-display)] font-extrabold text-xl sm:text-3xl text-white tracking-tight mb-3 sm:mb-4">
                 The Sanctuary Chronicle
               </h3>
               <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-md">
@@ -42,7 +42,7 @@ export default function FloriaFooter() {
               </p>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap gap-4 text-[9px] font-mono text-neutral-500 uppercase tracking-widest">
+            <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/[0.06] flex flex-wrap gap-2.5 sm:gap-4 text-[8.5px] sm:text-[9px] font-mono text-neutral-500 uppercase tracking-widest">
               <span>ARCHIVE: TOKYO</span>
               <span>·</span>
               <span>STUDIO: ZURICH</span>
@@ -52,11 +52,11 @@ export default function FloriaFooter() {
           </div>
 
           {/* Column 2: Navigation Index (lg: 3 cols) */}
-          <div className="lg:col-span-3 flex flex-col gap-4">
-            <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">
+          <div className="lg:col-span-3 flex flex-col gap-3 sm:gap-4">
+            <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">
               [ INDEX ]
             </span>
-            <nav className="flex flex-col gap-2.5 text-xs sm:text-sm font-medium tracking-wide">
+            <nav className="flex flex-col gap-2 sm:gap-2.5 text-xs sm:text-sm font-medium tracking-wide">
               <a
                 href="#hero-section"
                 className="text-neutral-400 hover:text-white transition-colors duration-200 flex items-center justify-between group"
@@ -96,11 +96,11 @@ export default function FloriaFooter() {
           </div>
 
           {/* Column 3: Dispatch & Socials (lg: 2 cols) */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
-            <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">
+          <div className="lg:col-span-2 flex flex-col gap-3 sm:gap-4">
+            <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">
               [ DISPATCHES ]
             </span>
-            <div className="flex flex-col gap-2.5 text-xs font-mono tracking-wider uppercase text-neutral-400">
+            <div className="flex flex-col gap-2 sm:gap-2.5 text-xs font-mono tracking-wider uppercase text-neutral-400">
               <a
                 href="https://instagram.com"
                 target="_blank"
@@ -146,12 +146,12 @@ export default function FloriaFooter() {
 
           {/* Column 4: Curatorial Inquiries (lg: 2 cols) */}
           <div className="lg:col-span-2 flex flex-col justify-between">
-            <div className="flex flex-col gap-4">
-              <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">
+            <div className="flex flex-col gap-3 sm:gap-4">
+              <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">
                 [ INQUIRIES ]
               </span>
               <div className="flex flex-col gap-1 text-xs">
-                <span className="text-neutral-500 text-[10px] font-mono uppercase">CURATORIAL OFFICE</span>
+                <span className="text-neutral-500 text-[9px] sm:text-[10px] font-mono uppercase">CURATORIAL OFFICE</span>
                 <a
                   href="mailto:archive@floria.world"
                   className="text-neutral-300 hover:text-white font-mono transition-colors"
@@ -160,13 +160,13 @@ export default function FloriaFooter() {
                 </a>
               </div>
               <div className="flex flex-col gap-1 text-xs">
-                <span className="text-neutral-500 text-[10px] font-mono uppercase">FIELD REGISTRATION</span>
-                <span className="text-neutral-400 font-mono text-[11px]">AUTUMN 2026 EDITION</span>
+                <span className="text-neutral-500 text-[9px] sm:text-[10px] font-mono uppercase">FIELD REGISTRATION</span>
+                <span className="text-neutral-400 font-mono text-[10px] sm:text-[11px]">AUTUMN 2026 EDITION</span>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/[0.06]">
-              <span className="text-[9px] font-mono text-neutral-500 uppercase tracking-widest block">
+            <div className="mt-5 sm:mt-6 pt-3 sm:pt-4 border-t border-white/[0.06]">
+              <span className="text-[8.5px] sm:text-[9px] font-mono text-neutral-500 uppercase tracking-widest block">
                 STATUS: IMMERSIVE EXHIBIT
               </span>
             </div>
@@ -175,13 +175,13 @@ export default function FloriaFooter() {
         </div>
 
         {/* ========================================================================= */}
-        {/* MONUMENTAL FLORIA TYPOGRAPHY: ART BOOK COLOPHON (60% OF PAGE WIDTH)      */}
+        {/* MONUMENTAL FLORIA TYPOGRAPHY: ART BOOK COLOPHON                           */}
         {/* ========================================================================= */}
-        <div className="py-12 sm:py-16 md:py-20 flex justify-center items-center select-none w-full max-w-[60vw] mx-auto">
+        <div className="py-10 sm:py-16 md:py-20 flex justify-center items-center select-none w-full max-w-full sm:max-w-[60vw] mx-auto overflow-hidden">
           <h2
             onClick={scrollToTop}
             title="Return to beginning"
-            className="font-[family-name:var(--font-display)] font-extrabold uppercase tracking-[-0.025em] text-white/[0.18] hover:text-white/[0.65] transition-colors duration-700 leading-[0.8] whitespace-nowrap text-[9.95vw] text-center cursor-pointer drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+            className="font-[family-name:var(--font-display)] font-extrabold uppercase tracking-[-0.025em] text-white/[0.18] hover:text-white/[0.65] transition-colors duration-700 leading-[0.8] whitespace-nowrap text-[18vw] sm:text-[9.95vw] text-center cursor-pointer drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
             style={{
               textRendering: "geometricPrecision",
             }}
@@ -193,7 +193,7 @@ export default function FloriaFooter() {
         {/* ========================================================================= */}
         {/* BOTTOM METADATA BAR                                                      */}
         {/* ========================================================================= */}
-        <div className="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
+        <div className="pt-6 sm:pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-[9px] sm:text-[10px] font-mono text-neutral-500 uppercase tracking-widest text-center sm:text-left">
           <div>
             © 2026 FLORIA ARCHIVE · ALL WORLD SPECIMENS RESERVED
           </div>

@@ -139,6 +139,16 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
   const sectionRef = useRef<HTMLElement>(null);
   const [selectedSpecimen, setSelectedSpecimen] = useState<Specimen | null>(null);
   const [revealedCards, setRevealedCards] = useState<Record<string, boolean>>({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -174,7 +184,7 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-[#000000] text-white py-28 sm:py-36 md:py-44 px-6 sm:px-12 md:px-16 lg:px-24 overflow-hidden border-t border-white/[0.08]"
+      className="relative w-full bg-[#000000] text-white py-16 sm:py-36 md:py-44 px-4 sm:px-12 md:px-16 lg:px-24 overflow-hidden border-t border-white/[0.08]"
       id="discovery-section"
       aria-label="Floria Discovery Archive"
     >
@@ -205,11 +215,11 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
         {/* ========================================================================= */}
         {/* SECTION HEADER: SCIENTIFIC ARCHIVE INTRO                                  */}
         {/* ========================================================================= */}
-        <div className="relative mb-24 sm:mb-32 md:mb-40 flex flex-col items-start max-w-4xl">
+        <div className="relative mb-14 sm:mb-32 md:mb-40 flex flex-col items-start max-w-4xl">
           {/* Metadata Kicker Badge */}
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#a7c957] shadow-[0_0_10px_#a7c957] animate-pulse" />
-            <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.32em] uppercase text-neutral-400">
+          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#a7c957] shadow-[0_0_10px_#a7c957] animate-pulse" />
+            <span className="text-[9px] sm:text-[11px] font-mono tracking-[0.25em] sm:tracking-[0.32em] uppercase text-neutral-400">
               [ SECTION 03 // ARCHIVE OF THE UNEXPLORED ]
             </span>
             <span className="hidden sm:inline-block text-[10px] font-mono text-neutral-600">
@@ -221,7 +231,7 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
           </div>
 
           {/* Monumental Headline */}
-          <h2 className="font-[family-name:var(--font-display)] font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[-0.02em] uppercase text-white mb-8 leading-[0.92]">
+          <h2 className="font-[family-name:var(--font-display)] font-extrabold text-3xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[-0.02em] uppercase text-white mb-6 sm:mb-8 leading-[0.92]">
             Discover <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-neutral-500">
               Floria
@@ -229,13 +239,13 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
           </h2>
 
           {/* Curated Editorial Introduction */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-10 border-l border-white/20 pl-6 sm:pl-8">
-            <p className="md:col-span-8 text-neutral-300 text-sm sm:text-base md:text-lg font-light leading-relaxed">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-10 border-l-2 sm:border-l border-white/20 pl-4 sm:pl-8">
+            <p className="md:col-span-8 text-neutral-300 text-xs sm:text-base md:text-lg font-light leading-relaxed">
               Beyond the woolen threshold lies an uncharted nocturnal biosphere. Here, sentient creatures
               arise from woven moss, elder thistle fibers, and celestial dew—each specimen recorded in field
               notes, awaiting those who seek what has never been named.
             </p>
-            <div className="md:col-span-4 flex flex-col justify-end gap-1.5 text-neutral-500 font-mono text-[10px] sm:text-[11px] tracking-wider uppercase">
+            <div className="md:col-span-4 flex flex-col justify-end gap-1 text-neutral-500 font-mono text-[9px] sm:text-[11px] tracking-wider uppercase">
               <span>FIELD REGISTRY // 05 CATALOGED</span>
               <span>ORGANIC FIBER ACCORD // VERIFIED</span>
               <span className="text-[#a7c957]">STATUS // SANCTUARY OPEN</span>
@@ -247,7 +257,7 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
         {/* ASYMMETRIC EDITORIAL GRID (4-6 CARDS)                                     */}
         {/* Intentional sizes, rotations, offsets and luxury field journal aesthetic  */}
         {/* ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 md:gap-16 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 md:gap-16 lg:gap-14 items-start">
           {SPECIMENS.map((specimen, index) => {
             const isRevealed = revealedCards[specimen.id];
 
@@ -260,9 +270,9 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
                 style={{
                   opacity: isRevealed ? 1 : 0,
                   transform: isRevealed
-                    ? `translateY(0) rotate(${specimen.rotation}) scale(1)`
-                    : `translateY(60px) rotate(0deg) scale(0.96)`,
-                  transitionDelay: `${index * 90}ms`,
+                    ? `translateY(0) rotate(${isMobile ? "0deg" : specimen.rotation}) scale(1)`
+                    : `translateY(40px) rotate(0deg) scale(0.98)`,
+                  transitionDelay: `${index * 80}ms`,
                 }}
               >
                 {/* Journal Field Specimen Outer Container */}
@@ -283,11 +293,11 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
                   </span>
 
                   {/* Top Bar: Archival Tag & Category */}
-                  <div className="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3 text-[10px] font-mono tracking-widest uppercase">
+                  <div className="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3 text-[9px] sm:text-[10px] font-mono tracking-widest uppercase">
                     <span className="text-neutral-400 group-hover:text-white transition-colors duration-300">
                       {specimen.catalog}
                     </span>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
                       <span
                         className="w-1.5 h-1.5 rounded-full"
                         style={{ backgroundColor: specimen.categoryColor }}
@@ -303,7 +313,7 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
 
                   {/* Artwork Image Frame */}
                   <div
-                    className={`relative w-full ${specimen.aspect} overflow-hidden rounded-[2px] bg-neutral-950 mb-5 border border-white/[0.06]`}
+                    className={`relative w-full ${specimen.aspect} overflow-hidden rounded-[2px] bg-neutral-950 mb-4 sm:mb-5 border border-white/[0.06]`}
                   >
                     <img
                       src={specimen.image}
@@ -315,14 +325,14 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none opacity-80 group-hover:opacity-40 transition-opacity duration-500" />
 
                     {/* Floating Hover Indicator on Image */}
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-black/70 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded-sm text-[9px] font-mono tracking-widest text-white uppercase">
+                    <div className="absolute top-2.5 right-2.5 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-black/70 backdrop-blur-md border border-white/20 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-sm text-[8px] sm:text-[9px] font-mono tracking-widest text-white uppercase">
                       INSPECT [ + ]
                     </div>
                   </div>
 
                   {/* Typographic Title & Latin Binomial */}
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-3">
-                    <h3 className="font-[family-name:var(--font-display)] font-extrabold text-xl sm:text-2xl md:text-3xl text-white group-hover:text-white transition-colors tracking-tight">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-2.5 sm:mb-3">
+                    <h3 className="font-[family-name:var(--font-display)] font-extrabold text-lg sm:text-2xl md:text-3xl text-white group-hover:text-white transition-colors tracking-tight">
                       {specimen.name}
                     </h3>
                     <span className="text-xs sm:text-sm font-serif italic text-neutral-400 font-light">
@@ -331,26 +341,26 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
                   </div>
 
                   {/* Mysterious Description */}
-                  <p className="text-xs sm:text-[13px] text-neutral-400 font-light leading-relaxed mb-6 group-hover:text-neutral-300 transition-colors">
+                  <p className="text-xs sm:text-[13px] text-neutral-400 font-light leading-relaxed mb-5 sm:mb-6 group-hover:text-neutral-300 transition-colors">
                     {specimen.description}
                   </p>
 
                   {/* Bottom Technical Telemetry Tray */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-white/[0.08] text-[9px] sm:text-[10px] font-mono text-neutral-500">
                     <div>
-                      <span className="block text-neutral-600 uppercase">HABITAT</span>
+                      <span className="block text-neutral-600 uppercase text-[8px] sm:text-[9px]">HABITAT</span>
                       <span className="text-neutral-300 truncate block">{specimen.telemetry.habitat}</span>
                     </div>
                     <div>
-                      <span className="block text-neutral-600 uppercase">ELEVATION</span>
+                      <span className="block text-neutral-600 uppercase text-[8px] sm:text-[9px]">ELEVATION</span>
                       <span className="text-neutral-300 block">{specimen.telemetry.elevation}</span>
                     </div>
                     <div>
-                      <span className="block text-neutral-600 uppercase">RESONANCE</span>
+                      <span className="block text-neutral-600 uppercase text-[8px] sm:text-[9px]">RESONANCE</span>
                       <span className="text-neutral-300 block">{specimen.telemetry.frequency}</span>
                     </div>
                     <div>
-                      <span className="block text-neutral-600 uppercase">OBSERVATION</span>
+                      <span className="block text-neutral-600 uppercase text-[8px] sm:text-[9px]">OBSERVATION</span>
                       <span className="text-neutral-300 truncate block">{specimen.telemetry.status}</span>
                     </div>
                   </div>
@@ -364,14 +374,14 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
         {/* ========================================================================= */}
         {/* CENTERED SECTION CTA: ENTER THE WORLD                                     */}
         {/* ========================================================================= */}
-        <div className="mt-32 sm:mt-40 md:mt-48 flex flex-col items-center justify-center text-center">
-          <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.35em] text-neutral-500 mb-4 block">
+        <div className="mt-20 sm:mt-40 md:mt-48 flex flex-col items-center justify-center text-center">
+          <span className="text-[9px] sm:text-[11px] font-mono uppercase tracking-[0.3em] sm:tracking-[0.35em] text-neutral-500 mb-3 sm:mb-4 block">
             [ INITIATE FULL IMMERSION ]
           </span>
 
           <a
             href="#hero-section"
-            className="group relative inline-flex items-center justify-center gap-3 border border-white/40 hover:border-white bg-black/60 hover:bg-white text-white hover:text-black px-8 sm:px-12 py-4 sm:py-5 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase rounded-[2px] transition-all duration-300 ease-out shadow-[0_10px_35px_rgba(0,0,0,0.8)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-white"
+            className="group relative inline-flex items-center justify-center gap-3 border border-white/40 hover:border-white bg-black/60 hover:bg-white text-white hover:text-black w-full sm:w-auto px-6 sm:px-12 py-3.5 sm:py-5 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase rounded-[2px] transition-all duration-300 ease-out shadow-[0_10px_35px_rgba(0,0,0,0.8)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-white"
             id="cta-enter-world"
           >
             <span>Enter the World</span>
@@ -380,7 +390,7 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
             </span>
           </a>
 
-          <span className="mt-4 text-[10px] font-mono text-neutral-600 tracking-widest uppercase">
+          <span className="mt-4 text-[9px] sm:text-[10px] font-mono text-neutral-600 tracking-widest uppercase">
             FLORIA EXPEDITION PROTOCOL // EST. 2026
           </span>
         </div>
@@ -393,39 +403,39 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-6 animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-3 sm:p-6 animate-fadeIn"
           onClick={() => setSelectedSpecimen(null)}
         >
           <div
-            className="w-full max-w-2xl border border-neutral-800 bg-[#0c0c0c] p-6 sm:p-10 text-left shadow-2xl relative rounded-[2px]"
+            className="w-full max-w-2xl border border-neutral-800 bg-[#0c0c0c] p-4 sm:p-10 text-left shadow-2xl relative rounded-[2px] max-h-[88dvh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedSpecimen(null)}
-              className="absolute top-6 right-6 text-neutral-500 hover:text-white text-xs font-mono tracking-widest uppercase transition-colors"
+              className="absolute top-4 sm:top-6 right-4 sm:right-6 text-neutral-500 hover:text-white text-[11px] sm:text-xs font-mono tracking-widest uppercase transition-colors"
               aria-label="Close dialog"
             >
               [CLOSE ✕]
             </button>
 
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
               <span
                 className="w-2 h-2 rounded-full"
                 style={{ backgroundColor: selectedSpecimen.categoryColor }}
               />
-              <span className="text-[10px] font-mono tracking-[0.28em] text-neutral-400 uppercase">
+              <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] sm:tracking-[0.28em] text-neutral-400 uppercase">
                 {selectedSpecimen.catalog} · {selectedSpecimen.category}
               </span>
             </div>
 
-            <h3 className="font-[family-name:var(--font-display)] font-extrabold text-2xl sm:text-3xl md:text-4xl text-white tracking-tight mb-1">
+            <h3 className="font-[family-name:var(--font-display)] font-extrabold text-xl sm:text-3xl md:text-4xl text-white tracking-tight mb-0.5 sm:mb-1">
               {selectedSpecimen.name}
             </h3>
-            <span className="text-sm font-serif italic text-neutral-400 mb-6 block">
+            <span className="text-xs sm:text-sm font-serif italic text-neutral-400 mb-4 sm:mb-6 block">
               {selectedSpecimen.latinName}
             </span>
 
-            <div className="w-full h-64 sm:h-80 overflow-hidden rounded-[2px] mb-6 border border-white/10">
+            <div className="w-full h-44 sm:h-80 overflow-hidden rounded-[2px] mb-4 sm:mb-6 border border-white/10">
               <img
                 src={selectedSpecimen.image}
                 alt={selectedSpecimen.name}
@@ -433,36 +443,36 @@ export default function DiscoverySection({ onSelectSpecimen }: DiscoverySectionP
               />
             </div>
 
-            <p className="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed mb-6">
+            <p className="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed mb-4 sm:mb-6">
               {selectedSpecimen.description}
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-white/[0.02] border border-white/10 rounded-sm font-mono text-[10px] text-neutral-400 mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 p-3 sm:p-4 bg-white/[0.02] border border-white/10 rounded-sm font-mono text-[9px] sm:text-[10px] text-neutral-400 mb-4 sm:mb-6">
               <div>
-                <span className="block text-neutral-600 uppercase text-[9px]">NATURAL HABITAT</span>
-                <span className="text-white font-medium">{selectedSpecimen.telemetry.habitat}</span>
+                <span className="block text-neutral-600 uppercase text-[8px] sm:text-[9px]">NATURAL HABITAT</span>
+                <span className="text-white font-medium truncate block">{selectedSpecimen.telemetry.habitat}</span>
               </div>
               <div>
-                <span className="block text-neutral-600 uppercase text-[9px]">ALTITUDE REGISTER</span>
-                <span className="text-white font-medium">{selectedSpecimen.telemetry.elevation}</span>
+                <span className="block text-neutral-600 uppercase text-[8px] sm:text-[9px]">ALTITUDE REGISTER</span>
+                <span className="text-white font-medium block">{selectedSpecimen.telemetry.elevation}</span>
               </div>
               <div>
-                <span className="block text-neutral-600 uppercase text-[9px]">RESONANCE HARMONIC</span>
-                <span className="text-white font-medium">{selectedSpecimen.telemetry.frequency}</span>
+                <span className="block text-neutral-600 uppercase text-[8px] sm:text-[9px]">RESONANCE HARMONIC</span>
+                <span className="text-white font-medium block">{selectedSpecimen.telemetry.frequency}</span>
               </div>
               <div>
-                <span className="block text-neutral-600 uppercase text-[9px]">TAXONOMIC STATE</span>
-                <span className="text-white font-medium">{selectedSpecimen.telemetry.status}</span>
+                <span className="block text-neutral-600 uppercase text-[8px] sm:text-[9px]">TAXONOMIC STATE</span>
+                <span className="text-white font-medium truncate block">{selectedSpecimen.telemetry.status}</span>
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-neutral-900">
-              <span className="text-[10px] text-neutral-500 font-mono tracking-wider">
-                ARCHIVE ENTRY NO. {selectedSpecimen.id.toUpperCase()}
+            <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-neutral-900">
+              <span className="text-[9px] sm:text-[10px] text-neutral-500 font-mono tracking-wider">
+                ENTRY // {selectedSpecimen.id.toUpperCase()}
               </span>
               <button
                 onClick={() => setSelectedSpecimen(null)}
-                className="text-xs uppercase tracking-widest font-medium border border-neutral-700 px-4 py-2 hover:bg-white hover:text-black transition-all"
+                className="text-xs uppercase tracking-widest font-medium border border-neutral-700 px-3 py-1.5 sm:px-4 sm:py-2 hover:bg-white hover:text-black transition-all"
               >
                 Return to Archive →
               </button>
