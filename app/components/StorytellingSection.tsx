@@ -95,22 +95,39 @@ export default function StorytellingSection() {
         imageElementRef.current.style.transform = `scale(${Math.max(1, innerZoom).toFixed(4)})`;
       }
 
-      // 3. Staggered departure of asymmetric editorial text elements
+      // 3. Staggered departure and return of asymmetric editorial text elements
       if (textGroupRef.current) {
         const elements = textGroupRef.current.children;
 
         for (let i = 0; i < elements.length; i++) {
           const el = elements[i] as HTMLElement;
-          // Staggered timing parameters from dataset
-          const startP = el.dataset.start ? parseFloat(el.dataset.start) : 0.02 + (i % 5) * 0.035;
-          const duration = el.dataset.dur ? parseFloat(el.dataset.dur) : 0.28;
-          const endP = startP + duration;
 
-          const exitT = Math.max(0, Math.min(1, (p - startP) / (endP - startP)));
-          // Cubic ease-out for swift yet refined dispersal
-          const easedExit = 1 - Math.pow(1 - exitT, 3);
+          let dispersal = 0;
 
-          const opacity = Math.max(0, 1 - easedExit * 1.3);
+          if (p <= 0.44) {
+            // Forward Departure Phase: elements disperse as image scales up
+            const startP = el.dataset.start ? parseFloat(el.dataset.start) : 0.02 + (i % 5) * 0.035;
+            const duration = el.dataset.dur ? parseFloat(el.dataset.dur) : 0.28;
+            const endP = startP + duration;
+
+            const exitT = Math.max(0, Math.min(1, (p - startP) / (endP - startP)));
+            // Cubic ease-out for swift yet refined dispersal
+            dispersal = 1 - Math.pow(1 - exitT, 3);
+          } else if (p <= 0.56) {
+            // Peak Showcase Phase: image takes whole viewport height, text completely hidden
+            dispersal = 1;
+          } else {
+            // Return Phase: when unscaling, bring back sections like they were before
+            // Stagger return across p = 0.58 -> 0.88 so sections float back in as the image unscales
+            const returnStart = 0.58 + ((i % 5) * 0.035);
+            const returnDur = 0.16;
+            const returnT = Math.max(0, Math.min(1, (p - returnStart) / returnDur));
+            // Cubic ease-out for elegant settling
+            const returnEase = 1 - Math.pow(1 - returnT, 3);
+            dispersal = 1 - returnEase;
+          }
+
+          const opacity = Math.max(0, 1 - dispersal * 1.25);
 
           // Directional drifts defined per element
           const dirX = el.dataset.dirX ? parseFloat(el.dataset.dirX) : 0;
@@ -118,14 +135,14 @@ export default function StorytellingSection() {
           const baseRot = el.dataset.baseRot ? parseFloat(el.dataset.baseRot) : 0;
           const rotDelta = el.dataset.rotDelta ? parseFloat(el.dataset.rotDelta) : 0;
 
-          const tx = dirX * easedExit;
-          const ty = dirY * easedExit;
-          const currentRot = baseRot + rotDelta * easedExit;
-          const currentScale = 1 - easedExit * 0.12;
+          const tx = dirX * dispersal;
+          const ty = dirY * dispersal;
+          const currentRot = baseRot + rotDelta * dispersal;
+          const currentScale = 1 - dispersal * 0.12;
 
           el.style.opacity = opacity.toFixed(3);
           el.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0) rotate(${currentRot.toFixed(2)}deg) scale(${currentScale.toFixed(3)})`;
-          
+
           // Completely disable pointer events and hide once faded
           if (opacity <= 0.005) {
             el.style.visibility = "hidden";
