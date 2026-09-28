@@ -33,11 +33,25 @@ export default function Home() {
       const x = currentX.toFixed(2);
       const y = currentY.toFixed(2);
 
-      // Reveal radius: 260px with soft feathered edge
-      const maskGradient = `radial-gradient(circle 260px at ${x}px ${y}px, black 0%, black 150px, rgba(0,0,0,0.8) 195px, rgba(0,0,0,0.3) 235px, transparent 260px)`;
+      // Mobile spotlight: 70% smaller (radius 78px vs desktop 260px)
+      const isMobile = window.innerWidth < 768;
+      const radius = isMobile ? 78 : 260;
+
+      const rInner = (radius * (150 / 260)).toFixed(1);
+      const rFade1 = (radius * (195 / 260)).toFixed(1);
+      const rFade2 = (radius * (235 / 260)).toFixed(1);
+      const rEnd = radius.toFixed(1);
+
+      const rGlow1 = (radius * (215 / 260)).toFixed(1);
+      const rGlow2 = (radius * (246 / 260)).toFixed(1);
+      const rGlow3 = (radius * (256 / 260)).toFixed(1);
+      const rGlow4 = (radius * (262 / 260)).toFixed(1);
+
+      // Reveal radius with soft feathered edge
+      const maskGradient = `radial-gradient(circle ${rEnd}px at ${x}px ${y}px, black 0%, black ${rInner}px, rgba(0,0,0,0.8) ${rFade1}px, rgba(0,0,0,0.3) ${rFade2}px, transparent ${rEnd}px)`;
       
       // Soft glowing edge
-      const glowGradient = `radial-gradient(circle 260px at ${x}px ${y}px, transparent 0%, transparent 215px, rgba(255,230,190,0.18) 246px, rgba(255,255,255,0.32) 256px, transparent 262px)`;
+      const glowGradient = `radial-gradient(circle ${rEnd}px at ${x}px ${y}px, transparent 0%, transparent ${rGlow1}px, rgba(255,230,190,0.18) ${rGlow2}px, rgba(255,255,255,0.32) ${rGlow3}px, transparent ${rGlow4}px)`;
 
       if (revealLayerRef.current) {
         revealLayerRef.current.style.webkitMaskImage = maskGradient;
